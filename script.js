@@ -1,7 +1,10 @@
 // GET ELEMENTS
 let bootScreen = document.getElementById("bootScreen");
 let archiveScreen = document.getElementById("archiveScreen");
+let crashScreen = document.getElementById("crashScreen");
+
 let enterBtn = document.getElementById("enterBtn");
+let restartBtn = document.getElementById("restartBtn");
 
 let bootLine1 = document.getElementById("bootLine1");
 let bootLine2 = document.getElementById("bootLine2");
@@ -66,30 +69,19 @@ function typeText(element, text, speed, doneFunction) {
 
 // BOOT SEQUENCE
 function startBootSequence() {
-
   typeText(bootLine1, "ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM", 35, function () {
-
     typeText(bootLine2, "INITIALIZING MEMORY RECOVERY...", 30, function () {
-
       typeText(bootLine3, "SCANNING ARCHIVE CLUSTERS...", 30, function () {
-
         typeText(bootLine4, "WARNING: 73% DATA CORRUPTION DETECTED", 30, function () {
-
           enterBtn.classList.remove("hidden");
-
         });
-
       });
-
     });
-
   });
-
 }
 
 // SHOW STORY
 function showLine() {
-
   storyText.textContent = "";
 
   if (currentLine == 0) pageNumber.textContent = "ENTRY 01 / 10";
@@ -104,7 +96,6 @@ function showLine() {
   if (currentLine == 9) pageNumber.textContent = "ENTRY 10 / 10";
 
   let text = storyLines[currentLine];
-
   let i = 0;
 
   function typeStory() {
@@ -118,6 +109,12 @@ function showLine() {
   typeStory();
 }
 
+// CRASH SCREEN
+function showCrashScreen() {
+  archiveScreen.classList.add("hidden");
+  crashScreen.classList.remove("hidden");
+}
+
 // ENTER TERMINAL BUTTON
 enterBtn.addEventListener("click", function () {
   playBeep();
@@ -128,7 +125,6 @@ enterBtn.addEventListener("click", function () {
 
 // MUSIC BUTTON
 musicBtn.addEventListener("click", function () {
-
   if (musicOn == false) {
     musicOn = true;
     musicBtn.textContent = "MUSIC: ON";
@@ -141,12 +137,15 @@ musicBtn.addEventListener("click", function () {
     musicBtn.textContent = "MUSIC: OFF";
     musicSound.pause();
   }
+});
 
+// RESTART BUTTON
+restartBtn.addEventListener("click", function () {
+  location.reload();
 });
 
 // ARROW KEYS
 document.addEventListener("keydown", function (event) {
-
   if (archiveScreen.classList.contains("hidden")) {
     return;
   }
@@ -156,6 +155,10 @@ document.addEventListener("keydown", function (event) {
       currentLine = currentLine + 1;
       playBeep();
       showLine();
+
+      if (currentLine == 9) {
+        setTimeout(showCrashScreen, 2500);
+      }
     }
   }
 
@@ -166,7 +169,6 @@ document.addEventListener("keydown", function (event) {
       showLine();
     }
   }
-
 });
 
 // START BOOT
