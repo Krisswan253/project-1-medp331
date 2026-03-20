@@ -105,11 +105,12 @@ function updatePageNumber() {
   if (currentLine == 9) pageNumber.textContent = "ENTRY 10 / 10";
 }
 
-// CRASH SCREEN
+// ERROR CRASH SCREEN
 function showCrashScreen() {
   crashStarted = true;
   archiveScreen.classList.add("hidden");
   crashScreen.classList.remove("hidden");
+  crashScreen.classList.add("show");
 }
 
 // SHOW STORY
@@ -132,10 +133,10 @@ function showLine() {
       typingNow = false;
 
       if (currentLine == 9 && crashStarted == false) {
-        setTimeout(function () {
-          showCrashScreen();
-        }, 1200);
-      }
+  setTimeout(function () {
+    showCrashScreen();
+  }, 5000);
+}
     }
   }
 

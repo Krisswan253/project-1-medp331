@@ -299,10 +299,17 @@ body {
   width: 100%;
   height: 100%;
   background-color: black;
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
+}
+
+.crash-screen.hidden {
+  display: none;
+}
+
+.crash-screen.show {
+  display: flex;
 }
 
 .crash-box {
