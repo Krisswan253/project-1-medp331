@@ -51,7 +51,7 @@ https://www.geeksforgeeks.org/javascript/typewriter-effect-in-js/
 I used this as a reference for how recursive setTimeout() works for typing animations and how the function keeps calling itself until all characters are displayed.
 
 Typewriter Effect Guide (Dev.to)
-https://dev.to/topefasasi/how-to-create-a-typewriter-effect-with-html-css-and-js-a-step-by-step-guide-1f99
+<!-- https://dev.to/topefasasi/how-to-create-a-typewriter-effect-with-html-css-and-js-a-step-by-step-guide-1f99 -->
 
 This was helpful for understanding the overall structure of the typing effect and how it’s commonly used in storytelling websites.
 
