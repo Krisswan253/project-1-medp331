@@ -1,115 +1,107 @@
 let bootScreen = document.getElementById("bootScreen");
-let mainSite = document.getElementById("mainSite");
-let startBtn = document.getElementById("startBtn");
+let archiveScreen = document.getElementById("archiveScreen");
+let progressBar = document.getElementById("progressBar");
+let progressText = document.getElementById("progressText");
 
-let soundBtn = document.getElementById("soundBtn");
-let homeBtn = document.getElementById("homeBtn");
-let log1Btn = document.getElementById("log1Btn");
-let log2Btn = document.getElementById("log2Btn");
-let log3Btn = document.getElementById("log3Btn");
-let log4Btn = document.getElementById("log4Btn");
-let log5Btn = document.getElementById("log5Btn");
-
-let logTitle = document.getElementById("logTitle");
 let storyText = document.getElementById("storyText");
+let pageNumber = document.getElementById("pageNumber");
 let beepSound = document.getElementById("beepSound");
 
-let bar1 = document.getElementById("bar1");
-let bar2 = document.getElementById("bar2");
-let bar3 = document.getElementById("bar3");
-let bar4 = document.getElementById("bar4");
-let bar5 = document.getElementById("bar5");
+let progress = 0;
+let currentLine = 0;
+let typingTimeout;
 
-let soundOn = false;
+let line1 = "The archive opened like a mouth. At first it only offered dust, weak signal, and the feeling that something had been waiting in the dark.";
+let line2 = "There were pages here once that belonged completely to people. Strange layouts, bright colors, hidden thoughts, and little signs that someone wanted to be known.";
+let line3 = "Most of them are gone now. The names are still here, but the rooms behind them have collapsed into blank screens and broken links.";
+let line4 = "I found a journal that ended in the middle of a sentence. No final post. No goodbye. Just a thought still waiting for the person who never came back.";
+let line5 = "Farther in, the archive began saving stranger things. Drafts. Cursor trails. Hidden words written in the same color as the background.";
+let line6 = "Some files only seem to appear when the screen is dark enough to reflect my face. Some vanish as soon as I try to read them twice.";
+let line7 = "There is an audio trace here from a user with no account attached to it anymore. It sounds like static, breathing, and someone almost saying a name.";
+let line8 = "The deeper I move into the system, the less abandoned it feels. Something is still arranging the fragments. Something is still watching the pages open.";
+let line9 = "I do not think this archive only stores memory. I think it waits for someone to look inside so it can remember itself again.";
+let line10 = "If you are reading this now, then it has already noticed you too. Do not stay longer than you have to. Some things become real when they are read.";
 
-startBtn.addEventListener("click", function () {
-  bootScreen.classList.add("hidden");
-  mainSite.classList.remove("hidden");
-});
+let storyLines = [
+  line1,
+  line2,
+  line3,
+  line4,
+  line5,
+  line6,
+  line7,
+  line8,
+  line9,
+  line10
+];
 
-soundBtn.addEventListener("click", function () {
-  if (soundOn == false) {
-    soundOn = true;
-    soundBtn.textContent = "SOUND: ON";
-  } else {
-    soundOn = false;
-    soundBtn.textContent = "SOUND: OFF";
-  }
-});
+function startBoot() {
+  let bootTimer = setInterval(function () {
+    progress = progress + 2;
+    progressBar.style.width = progress + "%";
+    progressText.textContent = progress + "%";
 
-function playBeep() {
-  if (soundOn == true) {
-    beepSound.currentTime = 0;
-    beepSound.play();
-  }
+    if (progress >= 100) {
+      clearInterval(bootTimer);
+
+      setTimeout(function () {
+        bootScreen.classList.add("hidden");
+        archiveScreen.classList.remove("hidden");
+        showLine();
+      }, 500);
+    }
+  }, 60);
 }
 
-homeBtn.addEventListener("click", function () {
-  logTitle.textContent = "ARCHIVE READY";
-  storyText.textContent = "A damaged archive has been recovered. Something inside it has been trying to stay alive. The files feel less like data and more like remains. Click through the logs to see what is still speaking.";
-  playBeep();
-});
+function playBeep() {
+  beepSound.currentTime = 0;
+  beepSound.play();
+}
 
-log1Btn.addEventListener("click", function () {
-  logTitle.textContent = "LOG_01";
-  storyText.textContent = "At first the pages felt harmless. Handmade. Awkward. Full of blinking text, cheap stars, and overshared secrets. But the deeper I looked, the more abandoned rooms I found. Guestbooks with no final entry. Journals that ended mid-sentence. Profiles still waiting for someone who never came back.";
-  playBeep();
-});
+function showLine() {
+  clearTimeout(typingTimeout);
 
-log2Btn.addEventListener("click", function () {
-  logTitle.textContent = "LOG_02";
-  storyText.textContent = "Then the web changed. The strange little rooms were sealed over by smoother systems. Personal pages flattened into feeds. Faces became icons. Memory became content. It grew cleaner, but it also grew colder. The silence underneath everything became easier to hear.";
-  playBeep();
-});
+  storyText.textContent = "";
+  pageNumber.textContent = "ENTRY 0" + (currentLine + 1) + " / 10";
 
-log3Btn.addEventListener("click", function () {
-  logTitle.textContent = "LOG_03";
-  storyText.textContent = "I kept what I could. A page someone updated every night until one day they didn’t. A list of favorite songs from 2009. A confession hidden in white text at the bottom of a site no one visits anymore. These things are still here. They have been alone for a very long time.";
-  playBeep();
-});
-
-log4Btn.addEventListener("click", function () {
-  logTitle.textContent = "AUDIO_TRACE";
-  storyText.textContent = "[CORRUPTED TRANSCRIPT] ...someone is still inside the archive... signal unstable... I can hear pages opening where no user is logged in... there are names here with no bodies attached to them anymore... if you can read this, do not stay too long... it has started remembering you back...";
-  playBeep();
-});
-
-log5Btn.addEventListener("click", function () {
-  logTitle.textContent = "FINAL_MESSAGE";
-  storyText.textContent = "If you found this, then part of it survived. The old internet was never clean, but it made room for unfinished people. It held their fear, boredom, strange obsessions, and lonely little proofs of life. I kept them here for as long as I could. Now that you have opened this archive, it knows you were here too.";
-  playBeep();
-});
-
-window.addEventListener("scroll", function () {
-  let scrollAmount = window.scrollY;
-
-  if (scrollAmount > 50) {
-    bar1.classList.add("active-bar");
-  } else {
-    bar1.classList.remove("active-bar");
+  if (currentLine == 9) {
+    pageNumber.textContent = "ENTRY 10 / 10";
   }
 
-  if (scrollAmount > 150) {
-    bar2.classList.add("active-bar");
-  } else {
-    bar2.classList.remove("active-bar");
+  let fullText = storyLines[currentLine];
+  let letterNumber = 0;
+
+  function typeLetter() {
+    if (letterNumber < fullText.length) {
+      storyText.textContent = storyText.textContent + fullText.charAt(letterNumber);
+      letterNumber = letterNumber + 1;
+      typingTimeout = setTimeout(typeLetter, 22);
+    }
   }
 
-  if (scrollAmount > 250) {
-    bar3.classList.add("active-bar");
-  } else {
-    bar3.classList.remove("active-bar");
+  typeLetter();
+}
+
+document.addEventListener("keydown", function (event) {
+  if (archiveScreen.classList.contains("hidden")) {
+    return;
   }
 
-  if (scrollAmount > 350) {
-    bar4.classList.add("active-bar");
-  } else {
-    bar4.classList.remove("active-bar");
+  if (event.key == "ArrowRight") {
+    if (currentLine < 9) {
+      currentLine = currentLine + 1;
+      playBeep();
+      showLine();
+    }
   }
 
-  if (scrollAmount > 450) {
-    bar5.classList.add("active-bar");
-  } else {
-    bar5.classList.remove("active-bar");
+  if (event.key == "ArrowLeft") {
+    if (currentLine > 0) {
+      currentLine = currentLine - 1;
+      playBeep();
+      showLine();
+    }
   }
 });
+
+startBoot();

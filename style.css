@@ -8,63 +8,11 @@ body {
   background-color: #0a0f08;
   color: #6fff6f;
   font-family: "VT323", monospace;
-  min-height: 200vh;
+  min-height: 100vh;
 }
 
 .hidden {
   display: none;
-}
-
-/* BOOT SCREEN */
-
-.boot-screen {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.boot-box {
-  width: 100%;
-  max-width: 900px;
-  border: 2px solid #6fff6f;
-  padding: 30px;
-  box-shadow: 0 0 20px rgba(111, 255, 111, 0.2);
-  animation: glowPulse 2s infinite alternate;
-}
-
-.boot-box h1 {
-  font-size: 2.4rem;
-  margin-bottom: 25px;
-  text-shadow: 0 0 8px #6fff6f;
-}
-
-.boot-line {
-  font-size: 2rem;
-  margin-bottom: 12px;
-}
-
-#startBtn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background-color: transparent;
-  color: #6fff6f;
-  border: 2px solid #6fff6f;
-  font-family: "VT323", monospace;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-#startBtn:hover {
-  background-color: #6fff6f;
-  color: #0a0f08;
-}
-
-/* MAIN SITE */
-
-.main-site {
-  width: 100%;
 }
 
 .container {
@@ -84,75 +32,68 @@ body {
 }
 
 .top-bar h1 {
-  font-size: 3rem;
+  font-size: 48px;
 }
 
-.top-right {
+.top-bar p {
+  font-size: 28px;
+}
+
+.boot-screen {
+  width: 100%;
+  height: 700px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 18px;
-  font-size: 1.5rem;
 }
 
-#soundBtn {
-  padding: 8px 14px;
-  background-color: transparent;
-  color: #6fff6f;
+.boot-box {
+  width: 700px;
   border: 2px solid #6fff6f;
-  font-family: "VT323", monospace;
-  font-size: 1.3rem;
-  cursor: pointer;
+  padding: 40px;
+  text-align: center;
 }
 
-#soundBtn:hover {
+.boot-text {
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 8px #6fff6f;
+}
+
+.progress-box {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #6fff6f;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
   background-color: #6fff6f;
-  color: #0a0f08;
+  box-shadow: 0 0 10px #6fff6f;
+}
+
+.progress-text {
+  font-size: 32px;
+}
+
+.archive-screen {
+  width: 100%;
+  min-height: 700px;
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1fr 220px;
   gap: 20px;
-  align-items: start;
-}
-
-.left-panel {
-  border: 2px solid #6fff6f;
-  padding: 15px;
-  position: sticky;
-  top: 20px;
-}
-
-.left-panel h2 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #6fff6f;
-  padding-bottom: 10px;
-}
-
-.left-panel button {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 12px;
-  background-color: transparent;
-  color: #6fff6f;
-  border: 2px solid #6fff6f;
-  font-family: "VT323", monospace;
-  font-size: 1.7rem;
-  text-align: left;
-  cursor: pointer;
-}
-
-.left-panel button:hover {
-  background-color: #6fff6f;
-  color: #0a0f08;
-  box-shadow: 0 0 12px #6fff6f;
 }
 
 .right-panel {
   border: 2px solid #6fff6f;
   padding: 20px;
-  min-height: 900px;
+  min-height: 650px;
 }
 
 .content-header {
@@ -165,33 +106,31 @@ body {
 }
 
 .content-header h2 {
-  font-size: 2.4rem;
+  font-size: 38px;
 }
 
 .content-header p {
-  font-size: 1.5rem;
+  font-size: 26px;
 }
 
 .content-box {
   border: 2px solid #6fff6f;
   min-height: 320px;
   padding: 20px;
-  font-size: 2rem;
+  font-size: 32px;
   line-height: 1.3;
   margin-bottom: 20px;
-  animation: glowPulse 2s infinite alternate;
-  box-shadow: inset 0 0 15px rgba(111, 255, 111, 0.12);
+  box-shadow: inset 0 0 10px rgba(111, 255, 111, 0.15);
 }
 
 .memory-box {
   border: 2px dashed #6fff6f;
   padding: 15px;
-  font-size: 1.7rem;
-  margin-bottom: 30px;
+  font-size: 26px;
 }
 
-.memory-box p:first-child {
-  margin-bottom: 10px;
+.memory-box p {
+  margin-bottom: 8px;
 }
 
 .secret-text {
@@ -203,48 +142,51 @@ body {
   text-shadow: 0 0 8px #6fff6f;
 }
 
-.signal-box {
-  margin-top: 30px;
-  border-top: 2px solid #6fff6f;
-  padding-top: 15px;
+.signal-panel {
+  border: 2px solid #6fff6f;
+  padding: 20px;
+  min-height: 280px;
 }
 
-.signal-box p {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
+.signal-title {
+  font-size: 32px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #6fff6f;
+  padding-bottom: 10px;
 }
 
 .bars {
   display: flex;
   gap: 8px;
   align-items: flex-end;
-  height: 80px;
+  height: 110px;
+  margin-bottom: 20px;
 }
 
 .signal-bar {
-  width: 30px;
+  width: 28px;
   border: 2px solid #6fff6f;
   background-color: transparent;
 }
 
-#bar1 {
-  height: 15px;
+.signal-bar:nth-child(1) {
+  height: 18px;
 }
 
-#bar2 {
-  height: 30px;
+.signal-bar:nth-child(2) {
+  height: 36px;
 }
 
-#bar3 {
-  height: 45px;
+.signal-bar:nth-child(3) {
+  height: 54px;
 }
 
-#bar4 {
-  height: 60px;
+.signal-bar:nth-child(4) {
+  height: 72px;
 }
 
-#bar5 {
-  height: 75px;
+.signal-bar:nth-child(5) {
+  height: 90px;
 }
 
 .active-bar {
@@ -253,12 +195,7 @@ body {
 }
 
 .small-text {
-  margin-top: 10px;
-  font-size: 1.2rem;
-}
-
-.extra-space {
-  height: 900px;
+  font-size: 22px;
 }
 
 .scanlines {
@@ -277,58 +214,61 @@ body {
   pointer-events: none;
 }
 
-@keyframes glowPulse {
-  from {
-    box-shadow: inset 0 0 10px rgba(111, 255, 111, 0.08), 0 0 5px rgba(111, 255, 111, 0.1);
-  }
-  to {
-    box-shadow: inset 0 0 20px rgba(111, 255, 111, 0.18), 0 0 15px rgba(111, 255, 111, 0.15);
-  }
-}
-
 @media (max-width: 900px) {
-  body {
-    min-height: auto;
-  }
-
   .main-layout {
     grid-template-columns: 1fr;
-  }
-
-  .left-panel {
-    position: static;
   }
 
   .top-bar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-  }
-
-  .top-right {
-    flex-wrap: wrap;
     gap: 10px;
   }
 
-  .extra-space {
-    height: 300px;
+  .boot-box {
+    width: 100%;
   }
 }
 
 @media (max-width: 600px) {
   .top-bar h1 {
-    font-size: 2.2rem;
+    font-size: 34px;
   }
 
-  .boot-box h1 {
-    font-size: 1.8rem;
+  .top-bar p {
+    font-size: 22px;
   }
 
-  .boot-line {
-    font-size: 1.5rem;
+  .boot-text {
+    font-size: 30px;
+  }
+
+  .progress-text {
+    font-size: 26px;
+  }
+
+  .content-header h2 {
+    font-size: 30px;
+  }
+
+  .content-header p {
+    font-size: 22px;
   }
 
   .content-box {
-    font-size: 1.6rem;
+    font-size: 24px;
+    min-height: 260px;
+  }
+
+  .memory-box {
+    font-size: 22px;
+  }
+
+  .signal-title {
+    font-size: 28px;
+  }
+
+  .small-text {
+    font-size: 18px;
   }
 }
