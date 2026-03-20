@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAST TRANSMISSION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <div class="screen-flicker"></div>
+  <div class="scanlines"></div>
+
+  <main class="pipboy">
+
+    <header class="top-bar">
+      <div class="title">LAST TRANSMISSION</div>
+      <div class="status-group">
+        <span class="status">ARCHIVE: PARTIAL</span>
+        <span class="status">SIGNAL: WEAK</span>
+      </div>
+    </header>
+
+    <section class="boot-section" id="bootSection">
+      <p class="boot-line">SYSTEM BOOTING . . .</p>
+      <p class="boot-line">RECOVERING MEMORY CLUSTERS</p>
+      <p class="boot-line">RESTORING DAMAGED FILES</p>
+      <button id="enterBtn" class="enter-btn">ENTER ARCHIVE</button>
+    </section>
+
+    <section class="interface hidden" id="interface">
+
+      <aside class="sidebar">
+        <div class="sidebar-header">LOG MENU</div>
+        <button class="log-btn active" data-log="0">LOG_01</button>
+        <button class="log-btn" data-log="1">LOG_02</button>
+        <button class="log-btn" data-log="2">LOG_03</button>
+        <button class="log-btn" data-log="3">AUDIO_TRACE</button>
+        <button class="log-btn locked" data-log="4" id="finalLogBtn">FINAL_MESSAGE</button>
+
+        <div class="signal-panel">
+          <div class="signal-title">SIGNAL LEVEL</div>
+          <div class="signal-bars">
+            <div class="bar" id="bar1"></div>
+            <div class="bar" id="bar2"></div>
+            <div class="bar" id="bar3"></div>
+            <div class="bar" id="bar4"></div>
+            <div class="bar" id="bar5"></div>
+          </div>
+          <p class="small-text">SCROLL TO STABILIZE</p>
+        </div>
+      </aside>
+
+      <section class="content-area">
+        <div class="content-header">
+          <span id="contentTitle">LOG_01</span>
+          <span class="content-tag">RECOVERED FILE</span>
+        </div>
+
+        <div class="content-box">
+          <p id="typedText"></p>
+        </div>
+
+        <div class="memory-fragment">
+          <p class="fragment-label">MEMORY FRAGMENT</p>
+          <p class="fragment-text">
+            Hover to reveal: 
+            <span class="hover-secret">we used to build places, not feeds</span>
+          </p>
+        </div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- replace with your own sound file later -->
+  <audio id="beepSound" src="assets/beep.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
