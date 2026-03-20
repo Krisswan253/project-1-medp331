@@ -1,15 +1,22 @@
 let bootScreen = document.getElementById("bootScreen");
 let archiveScreen = document.getElementById("archiveScreen");
-let progressBar = document.getElementById("progressBar");
-let progressText = document.getElementById("progressText");
+let enterBtn = document.getElementById("enterBtn");
+
+let bootLine1 = document.getElementById("bootLine1");
+let bootLine2 = document.getElementById("bootLine2");
+let bootLine3 = document.getElementById("bootLine3");
+let bootLine4 = document.getElementById("bootLine4");
 
 let storyText = document.getElementById("storyText");
 let pageNumber = document.getElementById("pageNumber");
-let beepSound = document.getElementById("beepSound");
 
-let progress = 0;
+let beepSound = document.getElementById("beepSound");
+let musicSound = document.getElementById("musicSound");
+let musicBtn = document.getElementById("musicBtn");
+
 let currentLine = 0;
 let typingTimeout;
+let musicOn = false;
 
 let line1 = "The archive opened like a mouth. At first it only offered dust, weak signal, and the feeling that something had been waiting in the dark.";
 let line2 = "There were pages here once that belonged completely to people. Strange layouts, bright colors, hidden thoughts, and little signs that someone wanted to be known.";
@@ -35,38 +42,79 @@ let storyLines = [
   line10
 ];
 
-function startBoot() {
-  let bootTimer = setInterval(function () {
-    progress = progress + 2;
-    progressBar.style.width = progress + "%";
-    progressText.textContent = progress + "%";
-
-    if (progress >= 100) {
-      clearInterval(bootTimer);
-
-      setTimeout(function () {
-        bootScreen.classList.add("hidden");
-        archiveScreen.classList.remove("hidden");
-        showLine();
-      }, 500);
-    }
-  }, 60);
-}
-
 function playBeep() {
   beepSound.currentTime = 0;
-  beepSound.play();
+  beepSound.play().catch(function () {
+    console.log("Beep blocked.");
+  });
+}
+
+function typeText(element, text, speed, doneFunction) {
+  element.textContent = "";
+  let letterNumber = 0;
+
+  function typeOneLetter() {
+    if (letterNumber < text.length) {
+      element.textContent = element.textContent + text.charAt(letterNumber);
+      letterNumber = letterNumber + 1;
+      setTimeout(typeOneLetter, speed);
+    } else {
+      if (doneFunction) {
+        doneFunction();
+      }
+    }
+  }
+
+  typeOneLetter();
+}
+
+function startBootSequence() {
+  typeText(bootLine1, "ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM", 35, function () {
+    typeText(bootLine2, "INITIALIZING MEMORY RECOVERY...", 30, function () {
+      typeText(bootLine3, "SCANNING ARCHIVE CLUSTERS...", 30, function () {
+        typeText(bootLine4, "WARNING: 73% DATA CORRUPTION DETECTED", 30, function () {
+          enterBtn.classList.remove("hidden");
+        });
+      });
+    });
+  });
 }
 
 function showLine() {
   clearTimeout(typingTimeout);
 
-  storyText.textContent = "";
-  pageNumber.textContent = "ENTRY 0" + (currentLine + 1) + " / 10";
-
+  if (currentLine == 0) {
+    pageNumber.textContent = "ENTRY 01 / 10";
+  }
+  if (currentLine == 1) {
+    pageNumber.textContent = "ENTRY 02 / 10";
+  }
+  if (currentLine == 2) {
+    pageNumber.textContent = "ENTRY 03 / 10";
+  }
+  if (currentLine == 3) {
+    pageNumber.textContent = "ENTRY 04 / 10";
+  }
+  if (currentLine == 4) {
+    pageNumber.textContent = "ENTRY 05 / 10";
+  }
+  if (currentLine == 5) {
+    pageNumber.textContent = "ENTRY 06 / 10";
+  }
+  if (currentLine == 6) {
+    pageNumber.textContent = "ENTRY 07 / 10";
+  }
+  if (currentLine == 7) {
+    pageNumber.textContent = "ENTRY 08 / 10";
+  }
+  if (currentLine == 8) {
+    pageNumber.textContent = "ENTRY 09 / 10";
+  }
   if (currentLine == 9) {
     pageNumber.textContent = "ENTRY 10 / 10";
   }
+
+  storyText.textContent = "";
 
   let fullText = storyLines[currentLine];
   let letterNumber = 0;
@@ -81,6 +129,28 @@ function showLine() {
 
   typeLetter();
 }
+
+enterBtn.addEventListener("click", function () {
+  playBeep();
+  bootScreen.classList.add("hidden");
+  archiveScreen.classList.remove("hidden");
+  showLine();
+});
+
+musicBtn.addEventListener("click", function () {
+  if (musicOn == false) {
+    musicOn = true;
+    musicBtn.textContent = "MUSIC: ON";
+    musicSound.volume = 0.4;
+    musicSound.play().catch(function () {
+      console.log("Music blocked.");
+    });
+  } else {
+    musicOn = false;
+    musicBtn.textContent = "MUSIC: OFF";
+    musicSound.pause();
+  }
+});
 
 document.addEventListener("keydown", function (event) {
   if (archiveScreen.classList.contains("hidden")) {
@@ -104,4 +174,4 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-startBoot();
+startBootSequence();

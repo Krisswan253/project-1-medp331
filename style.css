@@ -35,8 +35,29 @@ body {
   font-size: 48px;
 }
 
-.top-bar p {
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.top-right p {
   font-size: 28px;
+}
+
+#musicBtn {
+  padding: 8px 14px;
+  background-color: transparent;
+  color: #6fff6f;
+  border: 2px solid #6fff6f;
+  font-family: "VT323", monospace;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#musicBtn:hover {
+  background-color: #6fff6f;
+  color: #0a0f08;
 }
 
 .boot-screen {
@@ -48,35 +69,33 @@ body {
 }
 
 .boot-box {
-  width: 700px;
+  width: 920px;
   border: 2px solid #6fff6f;
   padding: 40px;
-  text-align: center;
+  min-height: 380px;
 }
 
-.boot-text {
-  font-size: 40px;
-  margin-bottom: 30px;
+.boot-line {
+  font-size: 34px;
+  margin-bottom: 22px;
   text-shadow: 0 0 8px #6fff6f;
+  min-height: 40px;
 }
 
-.progress-box {
-  width: 100%;
-  height: 40px;
+.enter-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: transparent;
+  color: #6fff6f;
   border: 2px solid #6fff6f;
-  padding: 4px;
-  margin-bottom: 20px;
+  font-family: "VT323", monospace;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-.progress-bar {
-  width: 0%;
-  height: 100%;
+.enter-btn:hover {
   background-color: #6fff6f;
-  box-shadow: 0 0 10px #6fff6f;
-}
-
-.progress-text {
-  font-size: 32px;
+  color: #0a0f08;
 }
 
 .archive-screen {
@@ -235,16 +254,16 @@ body {
     font-size: 34px;
   }
 
-  .top-bar p {
-    font-size: 22px;
+  .top-right p {
+    font-size: 20px;
   }
 
-  .boot-text {
-    font-size: 30px;
+  #musicBtn {
+    font-size: 20px;
   }
 
-  .progress-text {
-    font-size: 26px;
+  .boot-line {
+    font-size: 24px;
   }
 
   .content-header h2 {

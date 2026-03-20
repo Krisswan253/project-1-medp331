@@ -17,27 +17,29 @@
 
     <div class="top-bar">
       <h1>LAST TRANSMISSION</h1>
-      <p>SIGNAL: WEAK</p>
-    </div>
-
-    <div id="bootScreen" class="boot-screen">
-      <div class="boot-box">
-        <p class="boot-text">SYSTEM BOOTING UP...</p>
-
-        <div class="progress-box">
-          <div id="progressBar" class="progress-bar"></div>
-        </div>
-
-        <p id="progressText" class="progress-text">0%</p>
+      <div class="top-right">
+        <p>SIGNAL: WEAK</p>
+        <button id="musicBtn">MUSIC: OFF</button>
       </div>
     </div>
 
-    <div id="archiveScreen" class="archive-screen hidden">
+    <!-- BOOT SCREEN -->
+    <div id="bootScreen" class="boot-screen">
+      <div class="boot-box">
+        <p id="bootLine1" class="boot-line"></p>
+        <p id="bootLine2" class="boot-line"></p>
+        <p id="bootLine3" class="boot-line"></p>
+        <p id="bootLine4" class="boot-line"></p>
 
+        <button id="enterBtn" class="enter-btn hidden">ENTER TERMINAL</button>
+      </div>
+    </div>
+
+    <!-- ARCHIVE SCREEN -->
+    <div id="archiveScreen" class="archive-screen hidden">
       <div class="main-layout">
 
         <div class="right-panel">
-
           <div class="content-header">
             <h2>MEMORY ARCHIVE</h2>
             <p id="pageNumber">ENTRY 01 / 10</p>
@@ -55,7 +57,6 @@
               <span class="secret-text">something inside the archive is still awake</span>
             </p>
           </div>
-
         </div>
 
         <div class="signal-panel">
@@ -78,6 +79,7 @@
   </div>
 
   <audio id="beepSound" src="assets/beep.mp3"></audio>
+  <audio id="musicSound" src="assets/music.mp3" loop></audio>
 
   <script src="script.js"></script>
 </body>
