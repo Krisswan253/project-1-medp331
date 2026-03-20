@@ -303,13 +303,17 @@ body {
   align-items: center;
   z-index: 999;
 }
-
-.crash-screen.hidden {
+.crash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
   display: none;
-}
-
-.crash-screen.show {
-  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 .crash-box {

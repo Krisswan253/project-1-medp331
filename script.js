@@ -109,10 +109,8 @@ function updatePageNumber() {
 function showCrashScreen() {
   crashStarted = true;
   archiveScreen.classList.add("hidden");
-  crashScreen.classList.remove("hidden");
-  crashScreen.classList.add("show");
+  crashScreen.style.display = "flex";
 }
-
 // SHOW STORY
 function showLine() {
   clearTimeout(storyTimer);
