@@ -21,6 +21,9 @@ let musicBtn = document.getElementById("musicBtn");
 // VARIABLES
 let currentLine = 0;
 let musicOn = false;
+let typingNow = false;
+let crashStarted = false;
+let storyTimer;
 
 // STORY TEXT
 let line1 = "The archive opened like a mouth. It felt like something inside it was breathing.";
@@ -30,13 +33,21 @@ let line4 = "I found something that was not a page. It looked back at me when I 
 let line5 = "The deeper I go, the more it feels like this system is not empty. It is waiting.";
 let line6 = "There are files that only appear when I stop moving. When I look directly at them, they disappear.";
 let line7 = "There is something wrong with the audio logs. It sounds like breathing behind the static.";
-let line8 = "I don’t think this is just memory storage anymore. Something is using it.";
+let line8 = "I do not think this is just memory storage anymore. Something is using it.";
 let line9 = "If you are reading this, then it already knows you are here.";
 let line10 = "Do not stay long. Some things become real when they are observed.";
 
 let storyLines = [
-  line1, line2, line3, line4, line5,
-  line6, line7, line8, line9, line10
+  line1,
+  line2,
+  line3,
+  line4,
+  line5,
+  line6,
+  line7,
+  line8,
+  line9,
+  line10
 ];
 
 // SIMPLE BEEP
@@ -47,14 +58,14 @@ function playBeep() {
   });
 }
 
-// SIMPLE TYPING FUNCTION
+// SIMPLE TYPING FUNCTION FOR BOOT
 function typeText(element, text, speed, doneFunction) {
   element.textContent = "";
   let i = 0;
 
   function type() {
     if (i < text.length) {
-      element.textContent += text.charAt(i);
+      element.textContent = element.textContent + text.charAt(i);
       i = i + 1;
       setTimeout(type, speed);
     } else {
@@ -80,10 +91,8 @@ function startBootSequence() {
   });
 }
 
-// SHOW STORY
-function showLine() {
-  storyText.textContent = "";
-
+// PAGE NUMBER
+function updatePageNumber() {
   if (currentLine == 0) pageNumber.textContent = "ENTRY 01 / 10";
   if (currentLine == 1) pageNumber.textContent = "ENTRY 02 / 10";
   if (currentLine == 2) pageNumber.textContent = "ENTRY 03 / 10";
@@ -94,25 +103,43 @@ function showLine() {
   if (currentLine == 7) pageNumber.textContent = "ENTRY 08 / 10";
   if (currentLine == 8) pageNumber.textContent = "ENTRY 09 / 10";
   if (currentLine == 9) pageNumber.textContent = "ENTRY 10 / 10";
+}
+
+// CRASH SCREEN
+function showCrashScreen() {
+  crashStarted = true;
+  archiveScreen.classList.add("hidden");
+  crashScreen.classList.remove("hidden");
+}
+
+// SHOW STORY
+function showLine() {
+  clearTimeout(storyTimer);
+  typingNow = true;
+
+  storyText.textContent = "";
+  updatePageNumber();
 
   let text = storyLines[currentLine];
   let i = 0;
 
   function typeStory() {
     if (i < text.length) {
-      storyText.textContent += text.charAt(i);
+      storyText.textContent = storyText.textContent + text.charAt(i);
       i = i + 1;
-      setTimeout(typeStory, 22);
+      storyTimer = setTimeout(typeStory, 22);
+    } else {
+      typingNow = false;
+
+      if (currentLine == 9 && crashStarted == false) {
+        setTimeout(function () {
+          showCrashScreen();
+        }, 1200);
+      }
     }
   }
 
   typeStory();
-}
-
-// CRASH SCREEN
-function showCrashScreen() {
-  archiveScreen.classList.add("hidden");
-  crashScreen.classList.remove("hidden");
 }
 
 // ENTER TERMINAL BUTTON
@@ -150,15 +177,19 @@ document.addEventListener("keydown", function (event) {
     return;
   }
 
+  if (typingNow == true) {
+    return;
+  }
+
+  if (crashStarted == true) {
+    return;
+  }
+
   if (event.key == "ArrowRight") {
     if (currentLine < 9) {
       currentLine = currentLine + 1;
       playBeep();
       showLine();
-
-      if (currentLine == 9) {
-        setTimeout(showCrashScreen, 2500);
-      }
     }
   }
 
