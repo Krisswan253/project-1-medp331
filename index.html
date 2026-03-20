@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAST TRANSMISSION</title>
+  <title>Last Transmission</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
@@ -11,74 +11,68 @@
 </head>
 <body>
 
-  <div class="screen-flicker"></div>
   <div class="scanlines"></div>
 
-  <main class="pipboy">
+  <div class="container">
 
-    <header class="top-bar">
-      <div class="title">LAST TRANSMISSION</div>
-      <div class="status-group">
-        <span class="status">ARCHIVE: PARTIAL</span>
-        <span class="status">SIGNAL: WEAK</span>
-      </div>
-    </header>
+    <div class="top-bar">
+      <h1>LAST TRANSMISSION</h1>
+      <p>SIGNAL: WEAK</p>
+    </div>
 
-    <section class="boot-section" id="bootSection">
-      <p class="boot-line">SYSTEM BOOTING . . .</p>
-      <p class="boot-line">RECOVERING MEMORY CLUSTERS</p>
-      <p class="boot-line">RESTORING DAMAGED FILES</p>
-      <button id="enterBtn" class="enter-btn">ENTER ARCHIVE</button>
-    </section>
+    <div class="main-layout">
 
-    <section class="interface hidden" id="interface">
+      <div class="left-panel">
+        <h2>LOG MENU</h2>
 
-      <aside class="sidebar">
-        <div class="sidebar-header">LOG MENU</div>
-        <button class="log-btn active" data-log="0">LOG_01</button>
-        <button class="log-btn" data-log="1">LOG_02</button>
-        <button class="log-btn" data-log="2">LOG_03</button>
-        <button class="log-btn" data-log="3">AUDIO_TRACE</button>
-        <button class="log-btn locked" data-log="4" id="finalLogBtn">FINAL_MESSAGE</button>
+        <button id="homeBtn">HOME</button>
+        <button id="log1Btn">LOG_01</button>
+        <button id="log2Btn">LOG_02</button>
+        <button id="log3Btn">LOG_03</button>
+        <button id="log4Btn">FINAL_MESSAGE</button>
 
-        <div class="signal-panel">
-          <div class="signal-title">SIGNAL LEVEL</div>
-          <div class="signal-bars">
-            <div class="bar" id="bar1"></div>
-            <div class="bar" id="bar2"></div>
-            <div class="bar" id="bar3"></div>
-            <div class="bar" id="bar4"></div>
-            <div class="bar" id="bar5"></div>
+        <div class="signal-box">
+          <p>SIGNAL LEVEL</p>
+          <div class="bars">
+            <div class="signal-bar" id="bar1"></div>
+            <div class="signal-bar" id="bar2"></div>
+            <div class="signal-bar" id="bar3"></div>
+            <div class="signal-bar" id="bar4"></div>
+            <div class="signal-bar" id="bar5"></div>
           </div>
-          <p class="small-text">SCROLL TO STABILIZE</p>
+          <p class="small-text">SCROLL DOWN</p>
         </div>
-      </aside>
+      </div>
 
-      <section class="content-area">
+      <div class="right-panel">
         <div class="content-header">
-          <span id="contentTitle">LOG_01</span>
-          <span class="content-tag">RECOVERED FILE</span>
+          <h2 id="logTitle">ARCHIVE READY</h2>
         </div>
 
         <div class="content-box">
-          <p id="typedText"></p>
-        </div>
-
-        <div class="memory-fragment">
-          <p class="fragment-label">MEMORY FRAGMENT</p>
-          <p class="fragment-text">
-            Hover to reveal: 
-            <span class="hover-secret">we used to build places, not feeds</span>
+          <p id="storyText">
+            A damaged archive has been recovered.  
+            Somewhere inside it are the last fragments of a more personal internet.  
+            Click through the logs to uncover what was lost.
           </p>
         </div>
-      </section>
 
-    </section>
+        <div class="memory-box">
+          <p>MEMORY FRAGMENT:</p>
+          <p>
+            Hover to reveal:
+            <span class="secret-text">we used to build places, not feeds</span>
+          </p>
+        </div>
 
-  </main>
+        <div class="extra-space"></div>
+      </div>
 
-  <!-- replace with your own sound file later -->
-  <audio id="beepSound" src="assets/beep.mp3" preload="auto"></audio>
+    </div>
+
+  </div>
+
+  <audio id="beepSound" src="assets/beep.mp3"></audio>
 
   <script src="script.js"></script>
 </body>

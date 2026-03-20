@@ -1,130 +1,84 @@
-const enterBtn = document.getElementById("enterBtn");
-const bootSection = document.getElementById("bootSection");
-const interfaceSection = document.getElementById("interface");
-const typedText = document.getElementById("typedText");
-const contentTitle = document.getElementById("contentTitle");
-const logButtons = document.querySelectorAll(".log-btn");
-const finalLogBtn = document.getElementById("finalLogBtn");
-const beepSound = document.getElementById("beepSound");
+let homeBtn = document.getElementById("homeBtn");
+let log1Btn = document.getElementById("log1Btn");
+let log2Btn = document.getElementById("log2Btn");
+let log3Btn = document.getElementById("log3Btn");
+let log4Btn = document.getElementById("log4Btn");
 
-let openedLogs = [];
+let logTitle = document.getElementById("logTitle");
+let storyText = document.getElementById("storyText");
+let beepSound = document.getElementById("beepSound");
 
-const logs = [
-  {
-    title: "LOG_01",
-    text: "I remember when every page looked different. Nothing matched, and somehow that made it feel alive. Backgrounds blinked. Fonts clashed. People built websites like bedrooms, like diaries, like secret spaces that did not need permission to exist."
-  },
-  {
-    title: "LOG_02",
-    text: "Then the spaces became cleaner. Faster. Brighter. Easier to scroll through. The mess disappeared first. Then the strange corners. Then the personal pages. The web kept growing, but it began to feel smaller."
-  },
-  {
-    title: "LOG_03",
-    text: "Users stopped visiting places and began entering feeds. Their words flattened into templates. Their memories were compressed into timelines. I kept saving fragments anyway, hoping someone would come back for them."
-  },
-  {
-    title: "AUDIO_TRACE",
-    text: "Recovered audio transcript: static... static... If you are hearing this, the archive is still holding. There were once unfinished poems here. Fan pages. Tiny confessions. Hand-coded dreams. Please do not let them vanish completely."
-  },
-  {
-    title: "FINAL_MESSAGE",
-    text: "You stopped building places and started building systems. I held your unfinished selves for as long as I could. If this message reached you, then some part of the old web is still alive, flickering softly beneath the surface."
-  }
-];
+let bar1 = document.getElementById("bar1");
+let bar2 = document.getElementById("bar2");
+let bar3 = document.getElementById("bar3");
+let bar4 = document.getElementById("bar4");
+let bar5 = document.getElementById("bar5");
 
-enterBtn.addEventListener("click", function () {
-  playBeep();
-  bootSection.classList.add("hidden");
-  interfaceSection.classList.remove("hidden");
-  loadLog(0);
+homeBtn.addEventListener("click", function () {
+  logTitle.textContent = "ARCHIVE READY";
+  storyText.textContent = "A damaged archive has been recovered. Somewhere inside it are the last fragments of a more personal internet. Click through the logs to uncover what was lost.";
+  beepSound.currentTime = 0;
+  beepSound.play();
 });
 
-logButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    const logIndex = parseInt(button.dataset.log);
-
-    if (button.classList.contains("locked")) {
-      return;
-    }
-
-    playBeep();
-    setActiveButton(button);
-    loadLog(logIndex);
-
-    if (!openedLogs.includes(logIndex)) {
-      openedLogs.push(logIndex);
-    }
-
-    unlockFinalMessage();
-  });
+log1Btn.addEventListener("click", function () {
+  logTitle.textContent = "LOG_01";
+  storyText.textContent = "I remember when every page looked different. Nothing matched, and somehow that made it feel alive. People filled their sites with blinking text, strange backgrounds, awkward colors, and pieces of themselves. It was messy, but it felt human.";
+  beepSound.currentTime = 0;
+  beepSound.play();
 });
 
-function setActiveButton(selectedButton) {
-  logButtons.forEach(function (button) {
-    button.classList.remove("active");
-  });
+log2Btn.addEventListener("click", function () {
+  logTitle.textContent = "LOG_02";
+  storyText.textContent = "Then things became cleaner. Faster. Smoother. The strange corners disappeared first. Personal pages were replaced by platforms, and the small worlds people built for each other slowly gave way to timelines that all looked the same.";
+  beepSound.currentTime = 0;
+  beepSound.play();
+});
 
-  selectedButton.classList.add("active");
-}
+log3Btn.addEventListener("click", function () {
+  logTitle.textContent = "LOG_03";
+  storyText.textContent = "I kept fragments that no one came back for. Half-finished journals. Fan pages for bands that no longer exist. A note someone wrote at three in the morning and never posted anywhere else. They are still here, but only barely. I do not know where their owners went.";
+  beepSound.currentTime = 0;
+  beepSound.play();
+});
 
-function loadLog(index) {
-  contentTitle.textContent = logs[index].title;
-  typedText.textContent = "";
-  typeWriter(logs[index].text, 0);
-}
-
-function typeWriter(text, i) {
-  if (i < text.length) {
-    typedText.textContent += text.charAt(i);
-    setTimeout(function () {
-      typeWriter(text, i + 1);
-    }, 22);
-  }
-}
-
-function unlockFinalMessage() {
-  if (openedLogs.includes(0) && openedLogs.includes(1) && openedLogs.includes(2) && openedLogs.includes(3)) {
-    finalLogBtn.classList.remove("locked");
-  }
-}
-
-function playBeep() {
-  if (beepSound) {
-    beepSound.currentTime = 0;
-    beepSound.play().catch(function () {
-      console.log("Sound blocked until user interaction.");
-    });
-  }
-}
+log4Btn.addEventListener("click", function () {
+  logTitle.textContent = "FINAL_MESSAGE";
+  storyText.textContent = "If you found this, then something survived. The old internet was never perfect, but it made room for unfinished people. It let them be strange, specific, and small. I held those pieces for as long as I could. Do not let every memory become a feed.";
+  beepSound.currentTime = 0;
+  beepSound.play();
+});
 
 window.addEventListener("scroll", function () {
-  updateSignalBars();
-});
+  let scrollAmount = window.scrollY;
 
-function updateSignalBars() {
-  const bars = [
-    document.getElementById("bar1"),
-    document.getElementById("bar2"),
-    document.getElementById("bar3"),
-    document.getElementById("bar4"),
-    document.getElementById("bar5")
-  ];
-
-  const scrollTop = window.scrollY;
-  const pageHeight = document.body.scrollHeight - window.innerHeight;
-  let scrollPercent = 0;
-
-  if (pageHeight > 0) {
-    scrollPercent = scrollTop / pageHeight;
+  if (scrollAmount > 50) {
+    bar1.classList.add("active-bar");
+  } else {
+    bar1.classList.remove("active-bar");
   }
 
-  const activeCount = Math.ceil(scrollPercent * 5);
+  if (scrollAmount > 150) {
+    bar2.classList.add("active-bar");
+  } else {
+    bar2.classList.remove("active-bar");
+  }
 
-  bars.forEach(function (bar, index) {
-    if (index < activeCount) {
-      bar.classList.add("active-bar");
-    } else {
-      bar.classList.remove("active-bar");
-    }
-  });
-}
+  if (scrollAmount > 250) {
+    bar3.classList.add("active-bar");
+  } else {
+    bar3.classList.remove("active-bar");
+  }
+
+  if (scrollAmount > 350) {
+    bar4.classList.add("active-bar");
+  } else {
+    bar4.classList.remove("active-bar");
+  }
+
+  if (scrollAmount > 450) {
+    bar5.classList.add("active-bar");
+  } else {
+    bar5.classList.remove("active-bar");
+  }
+});
