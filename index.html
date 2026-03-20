@@ -13,63 +13,84 @@
 
   <div class="scanlines"></div>
 
-  <div class="container">
-
-    <div class="top-bar">
-      <h1>LAST TRANSMISSION</h1>
-      <p>SIGNAL: WEAK</p>
+  <!-- BOOT SCREEN -->
+  <div id="bootScreen" class="boot-screen">
+    <div class="boot-box">
+      <h1>ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM</h1>
+      <p class="boot-line">INITIALIZING MEMORY RECOVERY...</p>
+      <p class="boot-line">SCANNING ARCHIVE CLUSTERS...</p>
+      <p class="boot-line">RESTORING LAST KNOWN SESSION...</p>
+      <p class="boot-line">WARNING: 73% DATA CORRUPTION DETECTED</p>
+      <button id="startBtn">ENTER TERMINAL</button>
     </div>
+  </div>
 
-    <div class="main-layout">
+  <!-- MAIN SITE -->
+  <div id="mainSite" class="main-site hidden">
 
-      <div class="left-panel">
-        <h2>LOG MENU</h2>
+    <div class="container">
 
-        <button id="homeBtn">HOME</button>
-        <button id="log1Btn">LOG_01</button>
-        <button id="log2Btn">LOG_02</button>
-        <button id="log3Btn">LOG_03</button>
-        <button id="log4Btn">FINAL_MESSAGE</button>
+      <div class="top-bar">
+        <h1>LAST TRANSMISSION</h1>
+        <div class="top-right">
+          <p>ARCHIVE: PARTIAL</p>
+          <p>SIGNAL: WEAK</p>
+          <button id="soundBtn">SOUND: OFF</button>
+        </div>
+      </div>
 
-        <div class="signal-box">
-          <p>SIGNAL LEVEL</p>
-          <div class="bars">
-            <div class="signal-bar" id="bar1"></div>
-            <div class="signal-bar" id="bar2"></div>
-            <div class="signal-bar" id="bar3"></div>
-            <div class="signal-bar" id="bar4"></div>
-            <div class="signal-bar" id="bar5"></div>
+      <div class="main-layout">
+
+        <div class="left-panel">
+          <h2>LOG MENU</h2>
+
+          <button id="homeBtn">HOME</button>
+          <button id="log1Btn">LOG_01</button>
+          <button id="log2Btn">LOG_02</button>
+          <button id="log3Btn">LOG_03</button>
+          <button id="log4Btn">AUDIO_TRACE</button>
+          <button id="log5Btn">FINAL_MESSAGE</button>
+
+          <div class="signal-box">
+            <p>SIGNAL LEVEL</p>
+            <div class="bars">
+              <div class="signal-bar" id="bar1"></div>
+              <div class="signal-bar" id="bar2"></div>
+              <div class="signal-bar" id="bar3"></div>
+              <div class="signal-bar" id="bar4"></div>
+              <div class="signal-bar" id="bar5"></div>
+            </div>
+            <p class="small-text">SCROLL TO STABILIZE</p>
           </div>
-          <p class="small-text">SCROLL DOWN</p>
         </div>
+
+        <div class="right-panel">
+          <div class="content-header">
+            <h2 id="logTitle">ARCHIVE READY</h2>
+            <p>RECOVERED FILE</p>
+          </div>
+
+          <div class="content-box">
+            <p id="storyText">
+              A damaged archive has been recovered.
+              Something inside it has been trying to stay alive.
+              Click through the logs to see what remains.
+            </p>
+          </div>
+
+          <div class="memory-box">
+            <p>MEMORY FRAGMENT</p>
+            <p>
+              Hover to reveal:
+              <span class="secret-text">it was quieter before everything began watching back</span>
+            </p>
+          </div>
+
+          <div class="extra-space"></div>
+        </div>
+
       </div>
-
-      <div class="right-panel">
-        <div class="content-header">
-          <h2 id="logTitle">ARCHIVE READY</h2>
-        </div>
-
-        <div class="content-box">
-          <p id="storyText">
-            A damaged archive has been recovered.  
-            Somewhere inside it are the last fragments of a more personal internet.  
-            Click through the logs to uncover what was lost.
-          </p>
-        </div>
-
-        <div class="memory-box">
-          <p>MEMORY FRAGMENT:</p>
-          <p>
-            Hover to reveal:
-            <span class="secret-text">we used to build places, not feeds</span>
-          </p>
-        </div>
-
-        <div class="extra-space"></div>
-      </div>
-
     </div>
-
   </div>
 
   <audio id="beepSound" src="assets/beep.mp3"></audio>

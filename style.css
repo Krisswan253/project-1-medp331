@@ -5,11 +5,66 @@
 }
 
 body {
-  background-color: #0b0f08;
+  background-color: #0a0f08;
   color: #6fff6f;
   font-family: "VT323", monospace;
   min-height: 200vh;
-  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+/* BOOT SCREEN */
+
+.boot-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.boot-box {
+  width: 100%;
+  max-width: 900px;
+  border: 2px solid #6fff6f;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(111, 255, 111, 0.2);
+  animation: glowPulse 2s infinite alternate;
+}
+
+.boot-box h1 {
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+  text-shadow: 0 0 8px #6fff6f;
+}
+
+.boot-line {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+#startBtn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: transparent;
+  color: #6fff6f;
+  border: 2px solid #6fff6f;
+  font-family: "VT323", monospace;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+#startBtn:hover {
+  background-color: #6fff6f;
+  color: #0a0f08;
+}
+
+/* MAIN SITE */
+
+.main-site {
+  width: 100%;
 }
 
 .container {
@@ -32,8 +87,26 @@ body {
   font-size: 3rem;
 }
 
-.top-bar p {
-  font-size: 1.8rem;
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 1.5rem;
+}
+
+#soundBtn {
+  padding: 8px 14px;
+  background-color: transparent;
+  color: #6fff6f;
+  border: 2px solid #6fff6f;
+  font-family: "VT323", monospace;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+#soundBtn:hover {
+  background-color: #6fff6f;
+  color: #0a0f08;
 }
 
 .main-layout {
@@ -51,7 +124,7 @@ body {
 }
 
 .left-panel h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 15px;
   border-bottom: 2px solid #6fff6f;
   padding-bottom: 10px;
@@ -60,45 +133,54 @@ body {
 .left-panel button {
   width: 100%;
   margin-bottom: 12px;
-  padding: 10px;
+  padding: 12px;
   background-color: transparent;
   color: #6fff6f;
   border: 2px solid #6fff6f;
   font-family: "VT323", monospace;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   text-align: left;
   cursor: pointer;
 }
 
 .left-panel button:hover {
   background-color: #6fff6f;
-  color: #0b0f08;
+  color: #0a0f08;
+  box-shadow: 0 0 12px #6fff6f;
 }
 
 .right-panel {
   border: 2px solid #6fff6f;
   padding: 20px;
-  min-height: 800px;
+  min-height: 900px;
 }
 
 .content-header {
   border-bottom: 2px solid #6fff6f;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .content-header h2 {
-  font-size: 2rem;
+  font-size: 2.4rem;
+}
+
+.content-header p {
+  font-size: 1.5rem;
 }
 
 .content-box {
   border: 2px solid #6fff6f;
-  min-height: 300px;
+  min-height: 320px;
   padding: 20px;
   font-size: 2rem;
   line-height: 1.3;
   margin-bottom: 20px;
   animation: glowPulse 2s infinite alternate;
+  box-shadow: inset 0 0 15px rgba(111, 255, 111, 0.12);
 }
 
 .memory-box {
@@ -106,6 +188,10 @@ body {
   padding: 15px;
   font-size: 1.7rem;
   margin-bottom: 30px;
+}
+
+.memory-box p:first-child {
+  margin-bottom: 10px;
 }
 
 .secret-text {
@@ -124,7 +210,7 @@ body {
 }
 
 .signal-box p {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-bottom: 10px;
 }
 
@@ -172,7 +258,7 @@ body {
 }
 
 .extra-space {
-  height: 700px;
+  height: 900px;
 }
 
 .scanlines {
@@ -193,14 +279,14 @@ body {
 
 @keyframes glowPulse {
   from {
-    box-shadow: inset 0 0 10px rgba(111, 255, 111, 0.1);
+    box-shadow: inset 0 0 10px rgba(111, 255, 111, 0.08), 0 0 5px rgba(111, 255, 111, 0.1);
   }
   to {
-    box-shadow: inset 0 0 20px rgba(111, 255, 111, 0.2);
+    box-shadow: inset 0 0 20px rgba(111, 255, 111, 0.18), 0 0 15px rgba(111, 255, 111, 0.15);
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   body {
     min-height: auto;
   }
@@ -209,17 +295,40 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
   .left-panel {
     position: static;
   }
 
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .top-right {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   .extra-space {
     height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-bar h1 {
+    font-size: 2.2rem;
+  }
+
+  .boot-box h1 {
+    font-size: 1.8rem;
+  }
+
+  .boot-line {
+    font-size: 1.5rem;
+  }
+
+  .content-box {
+    font-size: 1.6rem;
   }
 }

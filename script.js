@@ -1,8 +1,14 @@
+let bootScreen = document.getElementById("bootScreen");
+let mainSite = document.getElementById("mainSite");
+let startBtn = document.getElementById("startBtn");
+
+let soundBtn = document.getElementById("soundBtn");
 let homeBtn = document.getElementById("homeBtn");
 let log1Btn = document.getElementById("log1Btn");
 let log2Btn = document.getElementById("log2Btn");
 let log3Btn = document.getElementById("log3Btn");
 let log4Btn = document.getElementById("log4Btn");
+let log5Btn = document.getElementById("log5Btn");
 
 let logTitle = document.getElementById("logTitle");
 let storyText = document.getElementById("storyText");
@@ -14,39 +20,64 @@ let bar3 = document.getElementById("bar3");
 let bar4 = document.getElementById("bar4");
 let bar5 = document.getElementById("bar5");
 
+let soundOn = false;
+
+startBtn.addEventListener("click", function () {
+  bootScreen.classList.add("hidden");
+  mainSite.classList.remove("hidden");
+});
+
+soundBtn.addEventListener("click", function () {
+  if (soundOn == false) {
+    soundOn = true;
+    soundBtn.textContent = "SOUND: ON";
+  } else {
+    soundOn = false;
+    soundBtn.textContent = "SOUND: OFF";
+  }
+});
+
+function playBeep() {
+  if (soundOn == true) {
+    beepSound.currentTime = 0;
+    beepSound.play();
+  }
+}
+
 homeBtn.addEventListener("click", function () {
   logTitle.textContent = "ARCHIVE READY";
-  storyText.textContent = "A damaged archive has been recovered. Somewhere inside it are the last fragments of a more personal internet. Click through the logs to uncover what was lost.";
-  beepSound.currentTime = 0;
-  beepSound.play();
+  storyText.textContent = "A damaged archive has been recovered. Something inside it has been trying to stay alive. The files feel less like data and more like remains. Click through the logs to see what is still speaking.";
+  playBeep();
 });
 
 log1Btn.addEventListener("click", function () {
   logTitle.textContent = "LOG_01";
-  storyText.textContent = "I remember when every page looked different. Nothing matched, and somehow that made it feel alive. People filled their sites with blinking text, strange backgrounds, awkward colors, and pieces of themselves. It was messy, but it felt human.";
-  beepSound.currentTime = 0;
-  beepSound.play();
+  storyText.textContent = "At first the pages felt harmless. Handmade. Awkward. Full of blinking text, cheap stars, and overshared secrets. But the deeper I looked, the more abandoned rooms I found. Guestbooks with no final entry. Journals that ended mid-sentence. Profiles still waiting for someone who never came back.";
+  playBeep();
 });
 
 log2Btn.addEventListener("click", function () {
   logTitle.textContent = "LOG_02";
-  storyText.textContent = "Then things became cleaner. Faster. Smoother. The strange corners disappeared first. Personal pages were replaced by platforms, and the small worlds people built for each other slowly gave way to timelines that all looked the same.";
-  beepSound.currentTime = 0;
-  beepSound.play();
+  storyText.textContent = "Then the web changed. The strange little rooms were sealed over by smoother systems. Personal pages flattened into feeds. Faces became icons. Memory became content. It grew cleaner, but it also grew colder. The silence underneath everything became easier to hear.";
+  playBeep();
 });
 
 log3Btn.addEventListener("click", function () {
   logTitle.textContent = "LOG_03";
-  storyText.textContent = "I kept fragments that no one came back for. Half-finished journals. Fan pages for bands that no longer exist. A note someone wrote at three in the morning and never posted anywhere else. They are still here, but only barely. I do not know where their owners went.";
-  beepSound.currentTime = 0;
-  beepSound.play();
+  storyText.textContent = "I kept what I could. A page someone updated every night until one day they didn’t. A list of favorite songs from 2009. A confession hidden in white text at the bottom of a site no one visits anymore. These things are still here. They have been alone for a very long time.";
+  playBeep();
 });
 
 log4Btn.addEventListener("click", function () {
+  logTitle.textContent = "AUDIO_TRACE";
+  storyText.textContent = "[CORRUPTED TRANSCRIPT] ...someone is still inside the archive... signal unstable... I can hear pages opening where no user is logged in... there are names here with no bodies attached to them anymore... if you can read this, do not stay too long... it has started remembering you back...";
+  playBeep();
+});
+
+log5Btn.addEventListener("click", function () {
   logTitle.textContent = "FINAL_MESSAGE";
-  storyText.textContent = "If you found this, then something survived. The old internet was never perfect, but it made room for unfinished people. It let them be strange, specific, and small. I held those pieces for as long as I could. Do not let every memory become a feed.";
-  beepSound.currentTime = 0;
-  beepSound.play();
+  storyText.textContent = "If you found this, then part of it survived. The old internet was never clean, but it made room for unfinished people. It held their fear, boredom, strange obsessions, and lonely little proofs of life. I kept them here for as long as I could. Now that you have opened this archive, it knows you were here too.";
+  playBeep();
 });
 
 window.addEventListener("scroll", function () {
