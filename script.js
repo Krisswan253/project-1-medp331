@@ -26,16 +26,16 @@ let crashStarted = false;
 let storyTimer;
 
 // STORY TEXT
-let line1 = "The archive opened like a mouth. It felt like something inside it was breathing.";
-let line2 = "Pages were still here, but the people were gone. Their words remained, but no one was there to read them anymore.";
-let line3 = "Some pages ended mid sentence. Like someone was taken away before they could finish thinking.";
-let line4 = "I found something that was not a page. It looked back at me when I opened it.";
+let line1 = "I am the last living person here. I cant let this place go without telling you all that I know";
+let line2 = "The monster is here. It has always been here. Lurking in the shadows, waiting to strike.";
+let line3 = "people have been slowly taken away before they could finish thinking.";
+let line4 = "I found something that was not a human on this computer. It looked back at me when I opened it.";
 let line5 = "The deeper I go, the more it feels like this system is not empty. It is waiting.";
 let line6 = "There are files that only appear when I stop moving. When I look directly at them, they disappear.";
 let line7 = "There is something wrong with the audio logs. It sounds like breathing behind the static.";
 let line8 = "I do not think this is just memory storage anymore. Something is using it.";
 let line9 = "If you are reading this, then it already knows you are here.";
-let line10 = "Do not stay long. Some things become real when they are observed.";
+let line10 = "Do not stay long..its coming for you next.";
 
 let storyLines = [
   line1,
